@@ -1,10 +1,9 @@
 from fastapi import FastAPI
-from api.v1.routes import health
+from backend.api.v1 import router as api_router
 
 app = FastAPI(title="Trackr Backend", version="0.1.0")
 
-# Include router
-app.include_router(health.router, prefix="/api/v1/health", tags=["Health"])
+app.include_router(api_router.router, prefix="/api/v1")
 
 @app.get("/")
 def read_root():
