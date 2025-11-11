@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 type Coin = {
   id: string;
@@ -39,10 +40,32 @@ export default function CryptoPage() {
         {coins.map((coin) => (
           <li
             key={coin.id}
-            className="flex justify-between bg-gray-800 rounded-xl p-3 shadow-sm"
+            className="flex items-center justify-between bg-gray-800 rounded-xl p-3 shadow-sm"
           >
-            <span>{coin.name}</span>
-            <span>${coin.current_price.toLocaleString()}</span>
+            <div className="flex items-center space-x-3">
+              <Image
+                src={coin.image}
+                alt={coin.name}
+                className="w-8 h-8 rounded-full"
+                width={100}
+                height={100}
+              />
+              <span>
+                {coin.name} ({coin.symbol.toUpperCase()})
+              </span>
+            </div>
+            <div className="text-right">
+              <p>${coin.current_price.toLocaleString()}</p>
+              <p
+                className={
+                  coin.price_change_percentage_24h >= 0
+                    ? "text-green-400"
+                    : "text-red-500"
+                }
+              >
+                {coin.price_change_percentage_24h.toFixed(2)}%
+              </p>
+            </div>
           </li>
         ))}
       </ul>
