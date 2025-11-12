@@ -15,6 +15,7 @@
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "sqlalchemy": "^10.1.1",
     "uvicorn": "^0.0.1-security"
   },
   "devDependencies": {

@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from backend.api.v1.routes import crypto, health, news, stocks
 from fastapi.middleware.cors import CORSMiddleware
+from backend.database import Base, engine
+from backend.models import crypto
 
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Trackr API")
 
